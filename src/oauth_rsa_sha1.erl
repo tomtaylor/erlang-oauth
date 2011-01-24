@@ -4,13 +4,13 @@
 
 -include_lib("public_key/include/public_key.hrl").
 
-signature(BaseString, PrivateKeyPath) ->
+signature(_BaseString, _PrivateKeyPath) ->
   throw(disabled).
   %{ok, PemBin} = file:read_file(PrivateKeyPath)
   %[PrivateKey] = public_key:pem_decode(PemBin),
   %base64:encode_to_string(public_key:sign(list_to_binary(BaseString), PrivateKey)).
 
-verify(Signature, BaseString, PublicKey) ->
+verify(_Signature, _BaseString, _PublicKey) ->
   throw(disabled).
   %ublic_key:verify_signature(to_binary(BaseString), sha, base64:decode(Signature), public_key(PublicKey)).
 
@@ -19,7 +19,7 @@ to_binary(Term) when is_list(Term) ->
 to_binary(Term) when is_binary(Term) ->
   Term.
 
-public_key(Path) when is_list(Path) ->
+public_key(_Path) when is_list(Path) ->
   %{ok, [{cert, DerCert, not_encrypted}]} = public_key:pem_to_der(Path),
   %{ok, Cert} = public_key:pkix_decode_cert(DerCert, otp),
   %public_key(Cert);
