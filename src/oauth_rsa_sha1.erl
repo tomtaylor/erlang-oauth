@@ -6,27 +6,6 @@
 
 signature(_BaseString, _PrivateKeyPath) ->
   throw(disabled).
-  %{ok, PemBin} = file:read_file(PrivateKeyPath)
-  %[PrivateKey] = public_key:pem_decode(PemBin),
-  %base64:encode_to_string(public_key:sign(list_to_binary(BaseString), PrivateKey)).
 
 verify(_Signature, _BaseString, _PublicKey) ->
   throw(disabled).
-  %ublic_key:verify_signature(to_binary(BaseString), sha, base64:decode(Signature), public_key(PublicKey)).
-
-to_binary(Term) when is_list(Term) ->
-  list_to_binary(Term);
-to_binary(Term) when is_binary(Term) ->
-  Term.
-
-public_key(_Path) when is_list(Path) ->
-  %{ok, [{cert, DerCert, not_encrypted}]} = public_key:pem_to_der(Path),
-  %{ok, Cert} = public_key:pkix_decode_cert(DerCert, otp),
-  %public_key(Cert);
-  throw(disabled);
-public_key(#'OTPCertificate'{tbsCertificate=Cert}) ->
-  public_key(Cert);
-public_key(#'OTPTBSCertificate'{subjectPublicKeyInfo=Info}) ->
-  public_key(Info);
-public_key(#'OTPSubjectPublicKeyInfo'{subjectPublicKey=Key}) ->
-  Key.
